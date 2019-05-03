@@ -120,7 +120,7 @@ class FileTile extends React.PureComponent<Props> {
     const shouldHide = !claimIsMine && obscureNsfw && nsfw;
     if (shouldHide) {
       return displayHiddenMessage ? (
-        <span className="help">
+        <span className="help help--deprecated">
           {__('This file is hidden because it is marked NSFW. Update your')}{' '}
           <Button button="link" navigate="/$/settings" label={__('content viewing preferences')} />{' '}
           {__('to see it')}.
@@ -140,9 +140,9 @@ class FileTile extends React.PureComponent<Props> {
 
     const wrapperProps = name
       ? {
-        onClick: () => history.push(formatLbryUriForWeb(uri)),
-        role: 'button',
-      }
+          onClick: () => history.push(formatLbryUriForWeb(uri)),
+          role: 'button',
+        }
       : {};
 
     return !name && hideNoResult ? null : (

@@ -42,7 +42,7 @@ export default (props: Props) => {
 
   return (
     <Button
-      iconColor="red"
+      iconColor="red" /* this is very bad! if you are changing this you need to do a code-wide search for iconColor="red" */
       icon={isSubscribed ? ICONS.UNSUBSCRIBE : ICONS.SUBSCRIPTION}
       button={buttonStyle || 'alt'}
       label={subscriptionLabel}

@@ -137,7 +137,7 @@ function ChannelPage(props: Props) {
         </Form>
       )}
 
-      {!channelIsMine && <HiddenNsfwClaims className="card__content help" uri={uri} />}
+      {!channelIsMine && <HiddenNsfwClaims uri={uri} />}
     </Page>
   );
 }

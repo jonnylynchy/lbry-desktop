@@ -100,7 +100,7 @@ class InviteList extends React.PureComponent<Props> {
             </tbody>
           </table>
 
-          <div className="help">{rewardHelp}</div>
+          <div className="help help--deprecated">{rewardHelp}</div>
         </div>
       </section>
     );

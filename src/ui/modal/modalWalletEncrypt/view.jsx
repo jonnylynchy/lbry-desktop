@@ -134,7 +134,7 @@ class ModalWalletEncrypt extends React.PureComponent<Props, State> {
             />
           </fieldset-section>
 
-          <div className="help help--warning">
+          <div className="help help--deprecated help--warning">
             {__(
               'If your password is lost, it cannot be recovered. You will not be able to access your wallet without a password.'
             )}

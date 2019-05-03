@@ -345,8 +345,8 @@
 
 .media-group--list {
   .card__list {
-    padding-top: var(--spacing-vertical-large);
-    padding-bottom: var(--spacing-vertical-large);
+    margin-top: var(--spacing-vertical-large);
+    margin-bottom: var(--spacing-vertical-large);
 
     // Depending on screen width, the amount of items in
     // each row change and are auto-sized

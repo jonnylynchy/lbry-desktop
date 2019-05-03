@@ -48,7 +48,7 @@ class ModalAutoUpdateDownloaded extends React.PureComponent<Props, State> {
       >
         <section className="card__content">
           <p>{__('A new version of LBRY is ready for you.')}</p>
-          <p className="help">
+          <p className="help help--deprecated">
             {__('Want to know what has changed?')} See the{' '}
             <Button
               button="link"

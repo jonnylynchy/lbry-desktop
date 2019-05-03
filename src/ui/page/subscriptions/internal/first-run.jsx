@@ -1,57 +1,42 @@
 // @flow
 import React, { Fragment } from 'react';
 import Button from 'component/button';
-import SuggestedSubscriptions from 'component/subscribeSuggested';
 import Yrbl from 'component/yrbl';
+import * as ICONS from 'constants/icons';
+import Icon from 'component/common/icon';
 
 type Props = {
-  showSuggested: boolean,
-  loadingSuggested: boolean,
-  numberOfSubscriptions: number,
   onFinish: () => void,
-  doShowSuggestedSubs: () => void,
 };
 
 export default (props: Props) => {
-  const {
-    showSuggested,
-    loadingSuggested,
-    numberOfSubscriptions,
-    doShowSuggestedSubs,
-    onFinish,
-  } = props;
+  const { onFinish } = props;
 
   return (
     <Fragment>
       <Yrbl
-        title={numberOfSubscriptions > 0 ? __('Woohoo!') : __('No subscriptions... yet.')}
+        title={
+          <span>
+            How To <strike>Be A</strike> Sub
+          </span>
+        }
         subtitle={
           <React.Fragment>
             <p>
-              {showSuggested
-                ? __('I hear these channels are pretty good.')
-                : __("I'll tell you where the good channels are if you find me a wheel.")}
+              {__(
+                'Subscriptions let you stay current with the latest from your favorite creators.'
+              )}
             </p>
-            {!showSuggested && (
-              <div className="card__actions">
-                <Button button="primary" label={__('Explore')} onClick={doShowSuggestedSubs} />
-              </div>
-            )}
-            {showSuggested && numberOfSubscriptions > 0 && (
-              <div className="card__actions">
-                <Button
-                  button="primary"
-                  onClick={onFinish}
-                  label={`${__('View your')} ${numberOfSubscriptions} ${
-                    numberOfSubscriptions > 1 ? __('subscribed channels') : __('subscribed channel')
-                  }`}
-                />
-              </div>
-            )}
+            <p>
+              Click the <Icon icon={ICONS.SUBSCRIPTION} iconColor="red" /> to subscribe to a creator
+              you like and their content will show in this area.
+            </p>
+            <div className="card__actions">
+              <Button button="primary" onClick={onFinish} label={__('Got It')} />
+            </div>
           </React.Fragment>
         }
       />
-      {showSuggested && !loadingSuggested && <SuggestedSubscriptions />}
     </Fragment>
   );
 };

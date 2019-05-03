@@ -31,7 +31,7 @@ class ModalAutoUpdateConfirm extends React.PureComponent<Props> {
       >
         <section className="card__content">
           <p>{__('Your LBRY update is ready. Restart LBRY now to use it!')}</p>
-          <p className="help">
+          <p className="help help--deprecated">
             {__('Want to know what has changed?')} See the{' '}
             <Button
               button="link"

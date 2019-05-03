@@ -56,7 +56,7 @@ class RewardSummary extends React.Component<Props> {
             />
           </div>
 
-          <p className="help">
+          <p className="help help--deprecated">
             {__('Read our')}{' '}
             <Button button="link" label={__('FAQ')} href="https://lbry.com/faq/rewards" />{' '}
             {__('to learn more about LBRY Rewards')}.

@@ -94,7 +94,7 @@ class InviteNew extends React.PureComponent<Props> {
             copyable={referralLink}
           />
 
-          <p className="help">
+          <p className="help help--deprecated">
             {__('Earn')} <Button button="link" navigate="/$/rewards" label={__('rewards')} />{' '}
             {__('for inviting your friends.')} {__('Read our')}{' '}
             <Button button="link" label={__('FAQ')} href="https://lbry.com/faq/referrals" />{' '}

@@ -71,7 +71,7 @@ class UserPhoneVerify extends React.PureComponent<Props, State> {
           <div className="card__actions">{cancelButton}</div>
         </Form>
 
-        <p className="help">
+        <p className="help help--deprecated">
           {__('Email')} <Button button="link" href="mailto:help@lbry.com" label="help@lbry.com" />{' '}
           or join our <Button button="link" href="https://chat.lbry.com" label="chat" />{' '}
           {__('if you encounter any trouble with your code.')}

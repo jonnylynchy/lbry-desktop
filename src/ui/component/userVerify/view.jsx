@@ -59,7 +59,7 @@ class UserVerify extends React.PureComponent<Props> {
               />
             </div>
 
-            <div className="help">
+            <div className="help help--deprecated">
               {__('A $1 authorization may temporarily appear with your provider.')}{' '}
               <Button
                 button="link"
@@ -92,7 +92,7 @@ class UserVerify extends React.PureComponent<Props> {
               />
             </div>
 
-            <div className="help">
+            <div className="help help--deprecated">
               {__('Standard messaging rates apply. Having trouble?')}{' '}
               <Button button="link" href="https://lbry.com/faq/phone" label={__('Read more.')} />
             </div>

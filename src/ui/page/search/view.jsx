@@ -58,7 +58,7 @@ export default function SearchPage(props: Props) {
               <SearchOptions />
 
               <FileListSearch query={urlQuery} />
-              <div className="card__content help">
+              <div className="card__content help help--deprecated">
                 {__('These search results are provided by LBRY, Inc.')}
               </div>
             </div>

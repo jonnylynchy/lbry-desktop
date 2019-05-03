@@ -94,11 +94,11 @@ export const selectSuggestedChannels = createSelector(
   }
 );
 
-export const selectFirstRunCompleted = createSelector(
+export const selectShowSubscriptionHelp = createSelector(
   selectState,
-  state => state.firstRunCompleted
+  state => !state.firstRunCompleted && state.subscriptions.length === 0
 );
-export const selectshowSuggestedSubs = createSelector(
+export const selectShowSuggestedSubs = createSelector(
   selectState,
   state => state.showSuggestedSubs
 );
@@ -217,22 +217,25 @@ export const selectSubscriptionClaims = createSelector(
   selectUnreadByChannel,
   (channelIds, allClaims, savedSubscriptions, unreadByChannel) => {
     // no claims loaded yet
+    console.log('we are in selectsubscriptionclaims');
     if (!Object.keys(channelIds).length) {
       return [];
     }
 
-    let fetchedSubscriptions = [];
+    let streamClaims = [];
 
     savedSubscriptions.forEach(subscription => {
+      console.log(subscription);
       let channelClaims = [];
 
       // if subscribed channel has content
       if (channelIds[subscription.uri] && channelIds[subscription.uri]['1']) {
+        console.log('has stuff');
         // This will need to be more robust, we will want to be able to load more than the first page
 
         // Strip out any ids that will be shown as notifications
         const pageOneChannelIds = channelIds[subscription.uri]['1'];
-
+        console.log(pageOneChannelIds);
         // we have the channel ids and the corresponding claims
         // loop over the list of ids and grab the claim
         pageOneChannelIds.forEach(id => {
@@ -249,10 +252,10 @@ export const selectSubscriptionClaims = createSelector(
         });
       }
 
-      fetchedSubscriptions = fetchedSubscriptions.concat(channelClaims);
+      streamClaims = streamClaims.concat(channelClaims);
     });
 
-    return fetchedSubscriptions;
+    return streamClaims;
   }
 );
 

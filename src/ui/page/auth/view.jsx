@@ -69,7 +69,7 @@ class AuthPage extends React.PureComponent<Props> {
           <section className="card card--section">
             {innerContent}
 
-            <p className="help">
+            <p className="help help--deprecated">
               {`${__(
                 'This information is disclosed only to LBRY, Inc. and not to the LBRY network. It is only required to earn LBRY rewards and may be used to sync usage data across devices.'
               )} `}

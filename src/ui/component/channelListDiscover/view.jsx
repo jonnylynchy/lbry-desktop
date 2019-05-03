@@ -8,7 +8,7 @@ type Props = {
   loading: boolean,
 };
 
-class SuggestedSubscriptions extends PureComponent<Props> {
+class ChannelListDiscover extends PureComponent<Props> {
   render() {
     const { suggested, loading } = this.props;
 
@@ -22,6 +22,9 @@ class SuggestedSubscriptions extends PureComponent<Props> {
 
     return suggested ? (
       <div className="card__content subscriptions__suggested">
+        <header className="card__header">
+          <h2 className="card__title">Suggested Channels</h2>
+        </header>
         {suggested.map(({ uri, label }) => (
           <CategoryList key={uri} category={label} categoryLink={uri} />
         ))}
@@ -30,4 +33,4 @@ class SuggestedSubscriptions extends PureComponent<Props> {
   }
 }
 
-export default SuggestedSubscriptions;
+export default ChannelListDiscover;
