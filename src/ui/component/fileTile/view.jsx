@@ -140,9 +140,9 @@ class FileTile extends React.PureComponent<Props> {
 
     const wrapperProps = name
       ? {
-          onClick: () => history.push(formatLbryUriForWeb(uri)),
-          role: 'button',
-        }
+        onClick: () => history.push(formatLbryUriForWeb(uri)),
+        role: 'button',
+      }
       : {};
 
     return !name && hideNoResult ? null : (
