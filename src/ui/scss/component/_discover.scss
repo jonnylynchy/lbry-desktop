@@ -1,0 +1,113 @@
+.discover-section {
+  width: 100%;
+  height: 400px;
+
+  border-bottom: 1px solid rgba($lbry-gray-1, 0.7);
+  padding: var(--spacing-vertical-large);
+
+  html[data-mode='dark'] & {
+    border-color: rgba($lbry-gray-5, 0.2);
+  }
+}
+
+.discover-section__header {
+  @extend .media-group__header;
+}
+
+.discover-section__search {
+  background-color: var(--lbry-white);
+  border: 1px solid var(--lbry-gray-1);
+  border-radius: 2rem;
+  color: var(--lbry-black);
+  display: block;
+  font-size: 1rem;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 1rem !important;
+  width: 500px;
+
+  html[data-mode='dark'] & {
+    background-color: mix($lbry-black, $lbry-gray-3, 90%);
+    color: var(--lbry-white);
+  }
+}
+
+.discover-section__tags {
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 3rem;
+  text-align: center;
+  width: 80%;
+}
+
+.discover-section__tag {
+  border: 1px solid rgba($lbry-black, 0.1);
+  border-radius: 1rem;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 2;
+  margin-bottom: var(--spacing-s);
+  padding-left: 1rem;
+  transition: all 0.2s;
+
+  html[data-mode='dark'] & {
+    border-color: rgba($lbry-white, 0.1);
+  }
+
+  &:not(:last-of-type) {
+    margin-right: var(--spacing-s);
+  }
+
+  &:not(.selected) {
+    &:not(:hover) {
+      background-color: var(--lbry-white);
+
+      html[data-mode='dark'] & {
+        background-color: var(--lbry-gray-5);
+      }
+    }
+
+    &:hover {
+      background-color: var(--lbry-gray-1);
+
+      html[data-mode='dark'] & {
+        background-color: var(--lbry-black);
+      }
+    }
+  }
+
+  &.selected {
+    &:not(:hover) {
+      background-color: var(--lbry-teal-3);
+
+      html[data-mode='dark'] & {
+        background-color: var(--lbry-teal-4);
+      }
+    }
+
+    &:hover {
+      background-color: var(--lbry-teal-1);
+
+      html[data-mode='dark'] & {
+        background-color: var(--lbry-teal-5);
+      }
+    }
+  }
+}
+
+.discover-section__tag-close {
+  border-left: 1px solid rgba($lbry-black, 0.1);
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding-right: 0.75rem;
+  padding-left: 0.5rem;
+
+  html[data-mode='dark'] & {
+    border-color: rgba($lbry-white, 0.1);
+  }
+}
+
+.discover-section__title {
+  @extend .media-group__header-title;
+}

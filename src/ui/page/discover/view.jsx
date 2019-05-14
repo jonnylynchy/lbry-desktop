@@ -3,6 +3,7 @@ import React from 'react';
 import Page from 'component/page';
 import CategoryList from 'component/categoryList';
 import FirstRun from 'component/firstRun';
+import Discovery from 'component/discoveryFirstRun';
 
 type Props = {
   fetchFeaturedUris: () => void,
@@ -20,6 +21,7 @@ class DiscoverPage extends React.PureComponent<Props> {
 
   componentDidMount() {
     const { fetchFeaturedUris, fetchRewardedContent, fetchRewards } = this.props;
+
     fetchFeaturedUris();
     fetchRewardedContent();
 
@@ -36,9 +38,11 @@ class DiscoverPage extends React.PureComponent<Props> {
 
   getCategoryLinkPartByCategory(category: string) {
     const channelName = category.substr(category.indexOf('@'));
+
     if (!channelName.includes('#')) {
       return null;
     }
+
     return channelName;
   }
 
@@ -63,6 +67,7 @@ class DiscoverPage extends React.PureComponent<Props> {
     return (
       <Page notContained isLoading={!hasContent && fetchingFeaturedUris} className="main--no-padding">
         <FirstRun />
+        <Discovery />
         {hasContent &&
           Object.keys(featuredUris).map(category => (
             <CategoryList

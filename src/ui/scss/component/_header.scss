@@ -9,7 +9,6 @@
   border-bottom: 1px solid $lbry-gray-1;
 
   html[data-mode='dark'] & {
-    background-color: rgba($lbry-black, 0.9);
     background-color: mix($lbry-black, $lbry-gray-3, 90%);
     color: $lbry-white;
     border-bottom: none;

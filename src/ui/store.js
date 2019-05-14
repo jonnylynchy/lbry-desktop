@@ -21,6 +21,7 @@ function createBulkThunkMiddleware() {
     if (action.type === 'BATCH_ACTIONS') {
       action.actions.filter(isFunction).map(actionFn => actionFn(dispatch, getState));
     }
+
     return next(action);
   };
 }
@@ -30,6 +31,7 @@ function enableBatching(reducer) {
     switch (action.type) {
       case 'BATCH_ACTIONS':
         return action.actions.filter(isNotFunction).reduce(batchingReducer, state);
+
       default:
         return reducer(state, action);
     }
@@ -65,15 +67,19 @@ const compressor = createCompressor();
 // We can't add this back until we can perform this in a non-blocking way
 // const saveClaimsFilter = createFilter('claims', ['byId', 'claimsByUri']);
 const contentFilter = createFilter('content', ['positions', 'history']);
+
 const fileInfoFilter = createFilter('fileInfo', [
   'fileListPublishedSort',
   'fileListDownloadedSort',
   'fileListSubscriptionSort',
 ]);
+
 const appFilter = createFilter('app', ['hasClickedComment', 'searchOptionsExpanded']);
+
 // We only need to persist the receiveAddress for the wallet
 const walletFilter = createFilter('wallet', ['receiveAddress']);
 const searchFilter = createFilter('search', ['options']);
+const tagsFilter = createFilter('tags', ['followedTags', 'customTags']);
 
 const persistOptions = {
   whitelist: [
@@ -86,7 +92,9 @@ const persistOptions = {
     'subscriptions',
     'app',
     'search',
+    'tags',
   ],
+
   // Order is important. Needs to be compressed last or other transforms can't
   // read the data
   transforms: [
@@ -97,8 +105,10 @@ const persistOptions = {
     // @endif
     appFilter,
     searchFilter,
+    tagsFilter,
     compressor,
   ],
+
   debounce: IS_WEB ? 5000 : 10000,
   storage: localForage,
 };
