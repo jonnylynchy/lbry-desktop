@@ -42,6 +42,7 @@
   "dependencies": {
     "@reach/rect": "^0.2.1",
     "@reach/tabs": "^0.1.5",
+    "css-doodle": "^0.7.1",
     "electron-dl": "^1.11.0",
     "electron-log": "^2.2.12",
     "electron-updater": "^4.0.6",
