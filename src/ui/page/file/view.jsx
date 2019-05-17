@@ -18,6 +18,8 @@ import FileDownloadLink from 'component/fileDownloadLink';
 import classnames from 'classnames';
 import getMediaType from 'util/get-media-type';
 import RecommendedContent from 'component/recommendedContent';
+import CommentsList from 'component/commentsList';
+import CommentCreate from 'component/commentCreate';
 
 type Props = {
   claim: StreamClaim,
@@ -125,7 +127,6 @@ class FilePage extends React.Component<Props> {
   render() {
     const {
       claim,
-      metadata,
       contentType,
       uri,
       rewardedContentClaimIds,
@@ -144,7 +145,7 @@ class FilePage extends React.Component<Props> {
     } = this.props;
 
     // File info
-    const { height, channel_name: channelName } = claim;
+    const { channel_name: channelName } = claim;
     const { PLAYABLE_MEDIA_TYPES, PREVIEW_MEDIA_TYPES } = FilePage;
     const isRewardContent = (rewardedContentClaimIds || []).includes(claim.claim_id);
     const shouldObscureThumbnail = obscureNsfw && nsfw;
@@ -282,6 +283,11 @@ class FilePage extends React.Component<Props> {
 
           <div className="media__info--large">
             <FileDetails uri={uri} />
+            <header className="card__header">
+              <h2 className="card__header">Comments</h2>
+            </header>
+            <CommentCreate comment={''} uri={uri} />
+            <CommentsList uri={uri} />
           </div>
         </div>
         <div className="grid-area--related">
