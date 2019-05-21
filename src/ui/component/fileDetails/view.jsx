@@ -31,7 +31,7 @@ class FileDetails extends PureComponent<Props> {
     Lbryio.call('user_tag', 'edit', { add: 'comments-waitlist' });
     showSnackBar(
       <span>
-        {__('Your Comment Has Been Posted')}
+        {__('Your comment has been posted')}
         <sup>TM</sup>
       </span>
     );
