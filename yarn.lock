@@ -6499,9 +6499,9 @@ lazy-val@^1.0.3, lazy-val@^1.0.4:
     yargs "^13.2.2"
     zstd-codec "^0.1.1"
 
-lbry-redux@lbryio/lbry-redux#02f6918238110726c0b3b4248c61a84ac0b969e3:
+lbry-redux@lbryio/lbry-redux#fdfffd7895180f2c6c2b3d58ae87d9fbacceab77:
   version "0.0.1"
-  resolved "https://codeload.github.com/lbryio/lbry-redux/tar.gz/02f6918238110726c0b3b4248c61a84ac0b969e3"
+  resolved "https://codeload.github.com/lbryio/lbry-redux/tar.gz/fdfffd7895180f2c6c2b3d58ae87d9fbacceab77"
   dependencies:
     proxy-polyfill "0.1.6"
     reselect "^3.0.0"
@@ -9944,8 +9944,6 @@ rxjs@^6.3.3, rxjs@^6.4.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.4.0.tgz#f3bb0fe7bda7fb69deac0c16f17b50b0b8790504"
   integrity sha512-Z9Yfa11F6B9Sg/BK9MnqnQ+aQYicPLtilXBp2yUtDt2JRCE0h26d33EnfO3ZxoNxG0T92OUucP3Ct7cpfkdFfw==
-  dependencies:
-    tslib "^1.9.0"
 
 safe-buffer@5.1.2, safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, safe-buffer@^5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.2"
