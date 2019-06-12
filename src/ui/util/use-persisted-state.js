@@ -1,11 +1,20 @@
 import { useEffect, useState } from 'react';
 
-export default function usePersistedState(key, firstTimeDefault) {
-  const defaultValue = localStorage.getItem(key) || firstTimeDefault;
+export function usePersistedState(key, firstTimeDefault) {
+  let defaultValue;
+  if (key) {
+    defaultValue = localStorage.getItem(key);
+  }
+  if (!defaultValue) {
+    defaultValue = firstTimeDefault;
+  }
+
   const [value, setValue] = useState(defaultValue);
 
   useEffect(() => {
-    localStorage.setItem(key, value);
+    if (key) {
+      localStorage.setItem(key, value);
+    }
   }, [key, value]);
 
   return [value, setValue];
