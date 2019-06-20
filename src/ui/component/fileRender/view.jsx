@@ -4,40 +4,52 @@ import React, { Suspense } from 'react';
 import LoadingScreen from 'component/common/loading-screen';
 import VideoViewer from 'component/viewers/videoViewer';
 
-const AudioViewer = React.lazy<*>(() =>
-  import(/* webpackChunkName: "audioViewer" */
-  'component/viewers/audioViewer')
-);
+// const AudioViewer = React.lazy<*>(() =>
+//   import(/* webpackChunkName: "audioViewer" */
+//   'component/viewers/audioViewer')
+// );
 
 const DocumentViewer = React.lazy<*>(() =>
-  import(/* webpackChunkName: "documentViewer" */
-  'component/viewers/documentViewer')
+  import(
+    /* webpackChunkName: "documentViewer" */
+    'component/viewers/documentViewer'
+  )
 );
 
 const DocxViewer = React.lazy<*>(() =>
-  import(/* webpackChunkName: "docxViewer" */
-  'component/viewers/docxViewer')
+  import(
+    /* webpackChunkName: "docxViewer" */
+    'component/viewers/docxViewer'
+  )
 );
 
 const HtmlViewer = React.lazy<*>(() =>
-  import(/* webpackChunkName: "htmlViewer" */
-  'component/viewers/htmlViewer')
+  import(
+    /* webpackChunkName: "htmlViewer" */
+    'component/viewers/htmlViewer'
+  )
 );
 
 const PdfViewer = React.lazy<*>(() =>
-  import(/* webpackChunkName: "pdfViewer" */
-  'component/viewers/pdfViewer')
+  import(
+    /* webpackChunkName: "pdfViewer" */
+    'component/viewers/pdfViewer'
+  )
 );
 
 // @if TARGET='app'
 const ComicBookViewer = React.lazy<*>(() =>
-  import(/* webpackChunkName: "comicBookViewer" */
-  'component/viewers/comicBookViewer')
+  import(
+    /* webpackChunkName: "comicBookViewer" */
+    'component/viewers/comicBookViewer'
+  )
 );
 
 const ThreeViewer = React.lazy<*>(() =>
-  import(/* webpackChunkName: "threeViewer" */
-  'component/viewers/threeViewer')
+  import(
+    /* webpackChunkName: "threeViewer" */
+    'component/viewers/threeViewer'
+  )
 );
 // @endif
 
@@ -152,7 +164,7 @@ class FileRender extends React.PureComponent<Props> {
       video: (
         <VideoViewer claim={claim} source={{ downloadPath, fileName }} contentType={contentType} poster={poster} />
       ),
-      audio: <AudioViewer claim={claim} source={{ downloadPath, fileName }} contentType={contentType} />,
+      // audio: <AudioViewer claim={claim} source={{ downloadPath, fileName }} contentType={contentType} />,
       // Add routes to viewer...
     };
 
@@ -194,7 +206,7 @@ class FileRender extends React.PureComponent<Props> {
   render() {
     return (
       <div className="file-render">
-        <React.Suspense fallback={<div />}>{this.renderViewer()}</React.Suspense>
+        <Suspense fallback={<div />}>{this.renderViewer()}</Suspense>
       </div>
     );
   }
