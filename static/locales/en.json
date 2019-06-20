@@ -284,5 +284,7 @@
   "Connecting...": "Connecting...",
   "Downloading stream... not long left now!": "Downloading stream... not long left now!",
   "Downloading: ": "Downloading: ",
-  "% complete": "% complete"
+  "% complete": "% complete",
+  "You haven't downloaded anything from LBRY yet.": "You haven't downloaded anything from LBRY yet.",
+  "Explore new content": "Explore new content"
 }
