@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { doResolveUri } from 'lbry-redux';
+import { doResolveUri, selectBalance } from 'lbry-redux';
 import {
   selectPublishFormValues,
   selectIsStillEditing,
@@ -26,6 +26,7 @@ const select = state => ({
   // If I clicked the "edit" button, have I changed the uri?
   // Need this to make it easier to find the source on previously published content
   isStillEditing: selectIsStillEditing(state),
+  balance: selectBalance(state),
   isResolvingUri: selectIsResolvingPublishUris(state),
   totalRewardValue: selectUnclaimedRewardValue(state),
 });

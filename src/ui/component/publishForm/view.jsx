@@ -1,20 +1,21 @@
 // @flow
 import { COPYRIGHT, OTHER } from 'constants/licenses';
 import { CHANNEL_NEW, CHANNEL_ANONYMOUS, MINIMUM_PUBLISH_BID } from 'constants/claim';
-import * as ICONS from 'constants/icons';
 import * as React from 'react';
 import { isNameValid, buildURI, regexInvalidURI, THUMBNAIL_STATUSES } from 'lbry-redux';
 import { Form, FormField, FormFieldPrice, Submit } from 'component/common/form';
 import Button from 'component/button';
 import ChannelSection from 'component/selectChannel';
 import classnames from 'classnames';
-import FileSelector from 'component/common/file-selector';
-import SelectThumbnail from 'component/selectThumbnail';
 import UnsupportedOnWeb from 'component/common/unsupported-on-web';
 import BidHelpText from './internal/bid-help-text';
 import NameHelpText from './internal/name-help-text';
 import LicenseType from './internal/license-type';
 import TagSelect from 'component/tagsSelect';
+import PublishText from 'component/publishText';
+import PublishThumbnail from 'component/publishThumbnail';
+import PublishPrice from 'component/publishPrice';
+import PublishFile from 'component/publishFile';
 
 type Props = {
   publish: PublishParams => void,
@@ -60,7 +61,6 @@ class PublishForm extends React.PureComponent<Props> {
   constructor(props: Props) {
     super(props);
 
-    (this: any).handleFileChange = this.handleFileChange.bind(this);
     (this: any).checkIsFormValid = this.checkIsFormValid.bind(this);
     (this: any).renderFormErrors = this.renderFormErrors.bind(this);
     (this: any).handlePublish = this.handlePublish.bind(this);
@@ -105,20 +105,6 @@ class PublishForm extends React.PureComponent<Props> {
     }
 
     return '';
-  }
-
-  handleFileChange(filePath: string, fileName: string) {
-    const { updatePublishForm, channel, name } = this.props;
-    const newFileParams: UpdatePublishFormData = { filePath };
-
-    if (!name) {
-      const parsedFileName = fileName.replace(regexInvalidURI, '');
-      const uri = this.getNewUri(parsedFileName, channel);
-      newFileParams.name = parsedFileName;
-      newFileParams.uri = uri;
-    }
-
-    updatePublishForm(newFileParams);
   }
 
   handleNameChange(name: ?string) {
@@ -335,137 +321,21 @@ class PublishForm extends React.PureComponent<Props> {
 
     return (
       <React.Fragment>
-        {IS_WEB && <UnsupportedOnWeb />}
-        <section
-          className={classnames('card card--section', {
-            'card--disabled': IS_WEB || publishing || balance === 0,
-          })}
-        >
-          <header className="card__header">
-            <h2 className="card__title card__title--flex-between">
-              {__('Choose File')}
-              {(filePath || !!editingURI) && (
-                <Button button="inverse" icon={ICONS.REMOVE} label={__('Clear')} onClick={clearPublish} />
-              )}
-            </h2>
-            {isStillEditing && <p className="card__subtitle">{__('You are currently editing a claim.')}</p>}
-          </header>
+        <UnsupportedOnWeb />
 
-          <div className="card__content">
-            <FileSelector currentPath={filePath} onFileChosen={this.handleFileChange} />
-            {!!isStillEditing && name && (
-              <p className="help">
-                {__("If you don't choose a file, the file from your existing claim")}
-                {` "${name}" `}
-                {__('will be used.')}
-              </p>
-            )}
-          </div>
-        </section>
-
+        <PublishFile />
         <div className={classnames({ 'card--disabled': formDisabled })}>
+          <PublishText disabled={formDisabled} />
+          <PublishThumbnail />
           <div className="card">
             <TagSelect
-              title={__('Choose Tags')}
+              title={__('Tags')}
               help={__('The better the tags, the easier your content is to find.')}
               onSelect={tag => updatePublishForm({ tags: [...tags, tag] })}
-              tagsChosen={tags}
+              // tagsChosen={tags}
             />
           </div>
-
-          <section className="card card--section">
-            <div className="card__content">
-              <FormField
-                type="text"
-                name="content_title"
-                label={__('Title')}
-                placeholder={__('Titular Title')}
-                disabled={formDisabled}
-                value={title}
-                onChange={e => updatePublishForm({ title: e.target.value })}
-              />
-
-              <FormField
-                type="markdown"
-                name="content_description"
-                label={__('Description')}
-                placeholder={__('Description of your content')}
-                value={description}
-                disabled={formDisabled}
-                onChange={text => updatePublishForm({ description: text })}
-              />
-            </div>
-          </section>
-
-          <section className="card card--section">
-            <header className="card__header">
-              <h2 className="card__title">{__('Thumbnail')}</h2>
-              <p className="card__subtitle">
-                {(uploadThumbnailStatus === undefined && __('You should reselect your file to choose a thumbnail')) ||
-                  (uploadThumbnailStatus === THUMBNAIL_STATUSES.API_DOWN ? (
-                    __('Enter a URL for your thumbnail.')
-                  ) : (
-                    <React.Fragment>
-                      {__('Upload your thumbnail (.png/.jpg/.jpeg/.gif) to')}{' '}
-                      <Button button="link" label={__('spee.ch')} href="https://spee.ch/about" />.{' '}
-                      {__('Recommended size: 800x450 (16:9)')}
-                    </React.Fragment>
-                  ))}
-              </p>
-            </header>
-
-            <SelectThumbnail
-              filePath={filePath}
-              thumbnailPath={thumbnailPath}
-              thumbnail={thumbnail}
-              uploadThumbnailStatus={uploadThumbnailStatus}
-              updatePublishForm={updatePublishForm}
-              formDisabled={formDisabled}
-              resetThumbnailStatus={resetThumbnailStatus}
-            />
-          </section>
-
-          <section className="card card--section">
-            <header className="card__header">
-              <h2 className="card__title">{__('Price')}</h2>
-              <p className="card__subtitle">{__('How much will this content cost?')}</p>
-            </header>
-
-            <div className="card__content">
-              <FormField
-                type="radio"
-                name="content_free"
-                label={__('Free')}
-                checked={contentIsFree}
-                disabled={formDisabled}
-                onChange={() => updatePublishForm({ contentIsFree: true })}
-              />
-
-              <FormField
-                type="radio"
-                name="content_cost"
-                label={__('Choose price')}
-                checked={!contentIsFree}
-                disabled={formDisabled}
-                onChange={() => updatePublishForm({ contentIsFree: false })}
-              />
-              {!contentIsFree && (
-                <FormFieldPrice
-                  name="content_cost_amount"
-                  min="0"
-                  price={fee}
-                  onChange={newFee => updatePublishForm({ fee: newFee })}
-                />
-              )}
-              {fee && fee.currency !== 'LBC' && (
-                <p className="form-field__help">
-                  {__(
-                    'All content fees are charged in LBC. For non-LBC payment methods, the number of credits charged will be adjusted based on the value of LBRY credits at the time of purchase.'
-                  )}
-                </p>
-              )}
-            </div>
-          </section>
+          <PublishPrice disabled={formDisabled} />
 
           <section className="card card--section">
             <header className="card__header">
@@ -608,9 +478,8 @@ class PublishForm extends React.PureComponent<Props> {
               <Button button="link" href="https://www.lbry.com/termsofservice" label={__('LBRY Terms of Service')} />.
             </p>
           </section>
+          {!formDisabled && !formValid && this.renderFormErrors()}
         </div>
-
-        {!formDisabled && !formValid && this.renderFormErrors()}
       </React.Fragment>
     );
   }

@@ -60,7 +60,7 @@ class PublishPage extends React.PureComponent {
             </section>
           </Fragment>
         )}
-        <PublishForm {...this.props} scrollToTop={this.scrollToTop} />
+        <PublishForm scrollToTop={this.scrollToTop} />
       </Page>
     );
   }

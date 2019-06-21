@@ -389,5 +389,12 @@
   "Editing...": "Editing...",
   "It looks like you haven't published anything to LBRY yet.": "It looks like you haven't published anything to LBRY yet.",
   "Publish something new": "Publish something new",
-  "Take a snapshot from your video": "Take a snapshot from your video"
+  "Take a snapshot from your video": "Take a snapshot from your video",
+  "File": "File",
+  "You should reselect your file to choose a thumbnail": "You should reselect your file to choose a thumbnail",
+  "Description...": "Description...",
+  "Upload Thumbnail": "Upload Thumbnail",
+  "Confirm Thumbnail Upload": "Confirm Thumbnail Upload",
+  "Upload": "Upload",
+  "Pause at any time to select a thumbnail from your video": "Pause at any time to select a thumbnail from your video"
 }

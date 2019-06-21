@@ -31,6 +31,12 @@ select {
   }
 }
 
+input,
+select,
+textarea {
+  border-color: lighten($lbry-black, 20%);
+}
+
 fieldset-section {
   label {
     width: auto;

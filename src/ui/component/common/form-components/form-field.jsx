@@ -153,6 +153,7 @@ export class FormField extends React.PureComponent<Props> {
       } else if (type === 'textarea') {
         input = (
           <fieldset-section>
+            <label htmlFor={name}>{label}</label>
             <textarea type={type} id={name} {...inputProps} />
           </fieldset-section>
         );
