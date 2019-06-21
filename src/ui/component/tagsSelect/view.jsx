@@ -21,14 +21,15 @@ const tagsAnimation = {
 };
 
 export default function TagSelect(props: Props) {
-  const { title, followedTags, showClose, doDeleteTag } = props;
+  const { title, help, tagsChosen, onSelect, followedTags, showClose, doDeleteTag } = props;
   const [hasClosed, setHasClosed] = usePersistedState('tag-select:has-closed', false);
 
   function handleClose() {
     setHasClosed(true);
   }
 
-  const transitions = useTransition(followedTags.map(tag => tag), tag => tag.name, tagsAnimation);
+  const tagsToDisplay = tagsChosen || followedTags.map(tag => tag.name);
+  const transitions = useTransition(tagsToDisplay, tag => tag, tagsAnimation);
 
   return (
     ((showClose && !hasClosed) || !showClose) && (
@@ -37,7 +38,7 @@ export default function TagSelect(props: Props) {
           {title}
           {showClose && !hasClosed && <Button button="close" icon={ICONS.REMOVE} onClick={handleClose} />}
         </h2>
-        <p className="help">{__("The tags you follow will change what's trending for you.")}</p>
+        <p className="help">{help || __("The tags you follow will change what's trending for you.")}</p>
 
         <div className="card__content">
           <ul className="tags--remove">
@@ -53,10 +54,10 @@ export default function TagSelect(props: Props) {
               </animated.li>
             ))}
             {!transitions.length && (
-              <div className="card__subtitle">{__("You aren't following any tags, try searching for one.")}</div>
+              <div className="empty">{__("You aren't following any tags, try searching for one.")}</div>
             )}
           </ul>
-          <TagsSearch />
+          <TagsSearch onSelect={onSelect} />
         </div>
       </div>
     )

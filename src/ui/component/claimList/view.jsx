@@ -36,10 +36,10 @@ export default function ClaimList(props: Props) {
   return (
     <section className={classnames('file-list')}>
       {header !== false && (
-        <div className={classnames('file-list__header', { 'file-list__header--small': type === 'small' })}>
+        <div className={classnames('claim-list__header', { 'claim-list__header--small': type === 'small' })}>
           {header || (
             <FormField
-              className="file-list__dropdown"
+              className="claim-list__dropdown"
               type="select"
               name="file_sort"
               value={currentSort}
@@ -50,16 +50,16 @@ export default function ClaimList(props: Props) {
             </FormField>
           )}
           {loading && <Spinner light type="small" />}
-          <div className="file-list__alt-controls">{headerAltControls}</div>
+          <div className="claim-list__alt-controls">{headerAltControls}</div>
         </div>
       )}
-      {meta && <div className="file-list__meta">{meta}</div>}
+      {meta && <div className="claim-list__meta">{meta}</div>}
       {hasUris && (
         <ul>
           {sortedUris.map((uri, index) => (
             <React.Fragment key={uri}>
               <ClaimListItem uri={uri} type={type} />
-              {index === 4 && injectedItem && <li className="file-list__item--injected">{injectedItem}</li>}
+              {index === 4 && injectedItem && <li className="claim-list__item--injected">{injectedItem}</li>}
             </React.Fragment>
           ))}
         </ul>

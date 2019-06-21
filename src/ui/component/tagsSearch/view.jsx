@@ -18,7 +18,7 @@ type Props = {
 };
 
 export default function TagSelect(props: Props) {
-  const { unfollowedTags, followedTags, doToggleTagFollow, doAddTag } = props;
+  const { unfollowedTags, followedTags, doToggleTagFollow, doAddTag, onSelect } = props;
   const [newTag, setNewTag] = useState('');
   let tags = unfollowedTags.slice();
   if (newTag) {
@@ -33,15 +33,21 @@ export default function TagSelect(props: Props) {
     setNewTag(e.target.value);
   }
 
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault();
     setNewTag('');
 
-    if (!unfollowedTags.includes(newTag)) {
-      doAddTag(newTag);
-    }
+    console.log('on', onSelect);
+    if (onSelect) {
+      onSelect(newTag);
+    } else {
+      if (!unfollowedTags.includes(newTag)) {
+        doAddTag(newTag);
+      }
 
-    if (!followedTags.includes(newTag)) {
-      doToggleTagFollow(newTag);
+      if (!followedTags.includes(newTag)) {
+        doToggleTagFollow(newTag);
+      }
     }
   }
 
