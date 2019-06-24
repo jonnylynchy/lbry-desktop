@@ -2,6 +2,8 @@
 import React from 'react';
 import Button from 'component/button';
 import { buildURI } from 'lbry-redux';
+import Tooltip from 'component/common/tooltip';
+import ClaimListItem from 'component/claimListItem';
 
 type Props = {
   isResolvingUri: boolean,
@@ -61,7 +63,7 @@ class UriIndicator extends React.PureComponent<Props> {
 
       return (
         <Button className="button--uri-indicator" navigate={channelLink}>
-          {inner}
+          <Tooltip label={<ClaimListItem uri={channelLink} />}>{inner}</Tooltip>
         </Button>
       );
     } else {
